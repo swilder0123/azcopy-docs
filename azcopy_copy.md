@@ -6,15 +6,17 @@ Copies source data to a destination location
 
 
 Copies source data to a destination location. The supported directions are:
-  - local <-> Azure Blob (SAS or OAuth authentication)
-  - local <-> Azure Files (Share/directory SAS authentication)
-  - local <-> ADLS Gen 2 (SAS, OAuth, or SharedKey authentication)
-  - Azure Blob (SAS or public) -> Azure Blob (SAS or OAuth authentication)
-  - Azure Blob (SAS or public) -> Azure Files (SAS)
-  - Azure Files (SAS) -> Azure Files (SAS)
-  - Azure Files (SAS) -> Azure Blob (SAS or OAuth authentication)
-  - AWS S3 (Access Key) -> Azure Block Blob (SAS or OAuth authentication)
-  - Google Cloud Storage (Service Account Key) -> Azure Block Blob (SAS or OAuth authentication) [Preview]
+Source|Source Authentication|Destination|Destination Authentication
+---|---|---
+Local| |Azure Blob|SAS or OAuth
+Local| |Azure Files|Share/directory SAS
+Local| |ADLS Gen 2|SAS, OAuth, or SharedKey
+Azure Blob|SAS or public|Azure Blob|SAS or OAuth
+Azure Blob|SAS or public|Azure Files|SAS
+Azure Files|SAS|Azure Files|SAS
+Azure Files|SAS|Azure Blob|SAS or OAuth
+AWS S3|Access Key|Azure Block Blob|SAS or OAuth
+Google Cloud Storage [Preview]|Service Account Key|Azure Block Blob|SAS or OAuth authentication
 
 Please refer to the examples for more information.
 
