@@ -60,136 +60,136 @@ cat "/path/to/file.txt" | azcopy cp "https://[account].blob.core.windows.net/[co
 ```
 Upload an entire directory by using a SAS token:
 ```  
-  azcopy cp "/path/to/dir" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
+azcopy cp "/path/to/dir" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
 
     OR
 
-  azcopy cp "/path/to/dir" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true --put-md5
+azcopy cp "/path/to/dir" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true --put-md5
 ```
 Upload a set of files by using a SAS token and wildcard (*) characters:
 ``` 
-  azcopy cp "/path/*foo/*bar/*.pdf" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]"
+azcopy cp "/path/*foo/*bar/*.pdf" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]"
 ```
 Upload files and directories by using a SAS token and wildcard (*) characters:
 ```
-  azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
+azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
 ```
 Upload files and directories to Azure Storage account and set the query-string encoded tags on the blob. 
 ```
-  azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
-	  - Keys and values are URL-encoded and the key-value pairs are separated by an ampersand('&')
-	  - https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
+azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
+- Keys and values are URL-encoded and the key-value pairs are separated by an ampersand('&')
+- https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
 ```
 Download a single file by using OAuth authentication. If you have not yet logged into AzCopy, please run the azcopy login command before you run the following command.
 ```
-  azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]" "/path/to/file.txt"
+azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]" "/path/to/file.txt"
 ```
 Download a single file by using a SAS token:
 ```
-  azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "/path/to/file.txt"
+azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "/path/to/file.txt"
 ```
 Download a single file by using a SAS token and then piping the output to a file (block blobs only):
 ```
-  azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" --from-to BlobPipe > "/path/to/file.txt"
+azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" --from-to BlobPipe > "/path/to/file.txt"
 ```
 Download a single file by using OAuth and then piping the output to a file (block blobs only):
 ```  
-  azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]" --from-to BlobPipe > "/path/to/file.txt"
+azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/blob]" --from-to BlobPipe > "/path/to/file.txt"
 ```
 Download an entire directory by using a SAS token:
 ```  
-  azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" "/path/to/dir" --recursive=true
+azcopy cp "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" "/path/to/dir" --recursive=true
 
-NOTE: There are only two supported ways to use a wildcard character in a URL. 
+  NOTE: There are only two supported ways to use a wildcard character in a URL. 
   - Use just one * after the final forward slash (/) of a URL. This copies all of the files in a directory to the destination without placing them into a subdirectory. 
   - Use one * in the name of a container as long as the URL refers only to a container and not to a blob. You can use this approach to obtain files from a subset of containers. 
 ```
 Download the contents of a directory without copying the containing directory itself.
 ``` 
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/folder]/*?[SAS]" "/path/to/dir"
+azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/folder]/*?[SAS]" "/path/to/dir"
 ```
 Download an entire storage account.
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/" "/path/to/dir" --recursive
+azcopy cp "https://[srcaccount].blob.core.windows.net/" "/path/to/dir" --recursive
 ```
 Download a subset of containers within a storage account by using a wildcard symbol (*) in the container name.
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[container*name]" "/path/to/dir" --recursive
+azcopy cp "https://[srcaccount].blob.core.windows.net/[container*name]" "/path/to/dir" --recursive
 ```
 Download all the versions of a blob from Azure Storage to local directory. Ensure that source is a valid blob, destination is a local folder and versionidsFile which takes in a path to the file where each version is written on a separate line. All the specified versions will get downloaded in the destination folder specified.
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[containername]/[blobname]" "/path/to/dir" --list-of-versions="/another/path/to/dir/[versionidsFile]"
+azcopy cp "https://[srcaccount].blob.core.windows.net/[containername]/[blobname]" "/path/to/dir" --list-of-versions="/another/path/to/dir/[versionidsFile]"
 ```
 Copy a single blob to another blob by using a SAS token.
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
+azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
 ```
 Copy a single blob to another blob by using a SAS token and an OAuth token. You have to use a SAS token at the end of the source account URL, but the destination account doesn't need one if you log into AzCopy by using the azcopy login command. 
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]"
+azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]"
 ```
 Copy one blob virtual directory to another by using a SAS token:
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
+azcopy cp "https://[srcaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
 ```
 Copy all blob containers, directories, and blobs from storage account to another by using a SAS token:
 ```
-  azcopy cp "https://[srcaccount].blob.core.windows.net?[SAS]" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
+azcopy cp "https://[srcaccount].blob.core.windows.net?[SAS]" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
 ```
 Copy a single object to Blob Storage from Amazon Web Services (AWS) S3 by using an access key and a SAS token. First, set the environment variable AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for AWS S3 source.
 ```  
-  azcopy cp "https://s3.amazonaws.com/[bucket]/[object]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
+azcopy cp "https://s3.amazonaws.com/[bucket]/[object]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
 ```
 Copy an entire directory to Blob Storage from AWS S3 by using an access key and a SAS token. First, set the environment variable AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for AWS S3 source.
 ``` 
-  azcopy cp "https://s3.amazonaws.com/[bucket]/[folder]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
+azcopy cp "https://s3.amazonaws.com/[bucket]/[folder]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
     
-    Please refer to https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html to better understand the [folder] placeholder.
+  NOTE: Please refer to https://docs.aws.amazon.com/AmazonS3/latest/user-guide/using-folders.html to better understand the [folder] placeholder.
 ```
 Copy all buckets to Blob Storage from Amazon Web Services (AWS) by using an access key and a SAS token. First, set the environment variable AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for AWS S3 source.
 ```
-  azcopy cp "https://s3.amazonaws.com/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
+azcopy cp "https://s3.amazonaws.com/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
 ```
 Copy all buckets to Blob Storage from an Amazon Web Services (AWS) region by using an access key and a SAS token. First, set the environment variable AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for AWS S3 source.
 ``` 
-  azcopy cp "https://s3-[region].amazonaws.com/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
+azcopy cp "https://s3-[region].amazonaws.com/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
 ```
 Copy a subset of buckets by using a wildcard symbol (*) in the bucket name. Like the previous examples, you'll need an access key and a SAS token. Make sure to set the environment variable AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for AWS S3 source.
 ```
-  azcopy cp "https://s3.amazonaws.com/[bucket*name]/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
+azcopy cp "https://s3.amazonaws.com/[bucket*name]/" "https://[destaccount].blob.core.windows.net?[SAS]" --recursive=true
 ```
 Copy blobs from one blob storage to another and preserve the tags from source. To preserve tags, use the following syntax :
 ```  	
-  azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/directory]?[SAS]" "https://[account].blob.core.windows.net/[destination_container]/[path/to/directory]?[SAS]" --s2s-preserve-blob-tags=true
+azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/directory]?[SAS]" "https://[account].blob.core.windows.net/[destination_container]/[path/to/directory]?[SAS]" --s2s-preserve-blob-tags=true
 ```
 Transfer files and directories to Azure Storage account and set the given query-string encoded tags on the blob. 
 ```
-	azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/directory]?[SAS]" "https://[account].blob.core.windows.net/[destination_container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
-	- The above sets tags {key = "bla bla", val = "foo"} and {key = "bla bla 2", val = "bar"}
-  - Keys and values must be URL-encoded
-  - Key-value pairs must be separated by an ampersand('&')
-	- See: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
-  - SAS permissions must include permissions('t' for tags) for setting tags
+azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/directory]?[SAS]" "https://[account].blob.core.windows.net/[destination_container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
+- The above sets tags {key = "bla bla", val = "foo"} and {key = "bla bla 2", val = "bar"}
+- Keys and values must be URL-encoded
+- Key-value pairs must be separated by an ampersand('&')
+- See: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
+- SAS permissions must include permissions('t' for tags) for setting tags
 ```
 Copy a single object to Blob Storage from Google Cloud Storage (GCS) by using a service account key and a SAS token. First, set the environment variable GOOGLE_APPLICATION_CREDENTIALS for GCS source.
 ```  
-  azcopy cp "https://storage.cloud.google.com/[bucket]/[object]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
+azcopy cp "https://storage.cloud.google.com/[bucket]/[object]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/blob]?[SAS]"
 ```
 Copy an entire directory to Blob Storage from Google Cloud Storage (GCS) by using a service account key and a SAS token. First, set the environment variable GOOGLE_APPLICATION_CREDENTIALS for GCS source.
 ``` 
-  azcopy cp "https://storage.cloud.google.com/[bucket]/[folder]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
+azcopy cp "https://storage.cloud.google.com/[bucket]/[folder]" "https://[destaccount].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --recursive=true
 ```
 Copy an entire bucket to Blob Storage from Google Cloud Storage (GCS) by using a service account key and a SAS token. First, set the environment variable GOOGLE_APPLICATION_CREDENTIALS for GCS source.
 ``` 
-  azcopy cp "https://storage.cloud.google.com/[bucket]" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
+azcopy cp "https://storage.cloud.google.com/[bucket]" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
 ```
 Copy all buckets to Blob Storage from Google Cloud Storage (GCS) by using a service account key and a SAS token. First, set the environment variables GOOGLE_APPLICATION_CREDENTIALS and GOOGLE_CLOUD_PROJECT=<project-id> for GCS source
 ``` 
-  azcopy cp "https://storage.cloud.google.com/" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
+azcopy cp "https://storage.cloud.google.com/" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
 ```
 Copy a subset of buckets by using a wildcard symbol (*) in the bucket name from Google Cloud Storage (GCS) by using a service account key and a SAS token for destination. First, set the environment variables GOOGLE_APPLICATION_CREDENTIALS and GOOGLE_CLOUD_PROJECT=<project-id> for GCS source
 ``` 
-  azcopy cp "https://storage.cloud.google.com/[bucket*name]/" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
+azcopy cp "https://storage.cloud.google.com/[bucket*name]/" "https://[destaccount].blob.core.windows.net/?[SAS]" --recursive=true
 ```
 
 ### Options
