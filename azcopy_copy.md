@@ -7,7 +7,7 @@ Copies source data to a destination location
 
 Copies source data to a destination location. The supported directions are:
 Source|Source Authentication|Destination|Destination Authentication
----|---|---
+---|---|---|---
 Local| |Azure Blob|SAS or OAuth
 Local| |Azure Files|Share/directory SAS
 Local| |ADLS Gen 2|SAS, OAuth, or SharedKey
