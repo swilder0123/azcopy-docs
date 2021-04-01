@@ -77,8 +77,11 @@ azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container
 Upload files and directories to Azure Storage account and set the query-string encoded tags on the blob. 
 ```
 azcopy cp "/path/*foo/*bar*" "https://[account].blob.core.windows.net/[container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
-- Keys and values are URL-encoded and the key-value pairs are separated by an ampersand('&')
-- https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
+NOTE: Observe the following with regards to setting tags:
+  - Keys and values must be URL-encoded
+  - Key-value pairs must be separated by an ampersand('&')
+  - See: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
+  - SAS permissions must include permissions('t' for tags) for setting tags
 ```
 Download a single file by using OAuth authentication. If you have not yet logged into AzCopy, please run the azcopy login command before you run the following command.
 ```
@@ -165,11 +168,12 @@ azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/d
 Transfer files and directories to Azure Storage account and set the given query-string encoded tags on the blob. 
 ```
 azcopy cp "https://[account].blob.core.windows.net/[source_container]/[path/to/directory]?[SAS]" "https://[account].blob.core.windows.net/[destination_container]/[path/to/directory]?[SAS]" --blob-tags="bla%20bla=foo&bla%20bla%202=bar"
-- The above sets tags {key = "bla bla", val = "foo"} and {key = "bla bla 2", val = "bar"}
-- Keys and values must be URL-encoded
-- Key-value pairs must be separated by an ampersand('&')
-- See: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
-- SAS permissions must include permissions('t' for tags) for setting tags
+  
+  NOTE: Observe the following with regards to setting tags:
+  - Keys and values must be URL-encoded
+  - Key-value pairs must be separated by an ampersand('&')
+  - See: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal
+  - SAS permissions must include permissions('t' for tags) for setting tags
 ```
 Copy a single object to Blob Storage from Google Cloud Storage (GCS) by using a service account key and a SAS token. First, set the environment variable GOOGLE_APPLICATION_CREDENTIALS for GCS source.
 ```  
